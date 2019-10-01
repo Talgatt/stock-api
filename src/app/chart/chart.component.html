@@ -1,0 +1,21 @@
+<p>chart works!</p>
+
+<button (click)="onClick()">CLICK ME!!! PLEASE!</button> 
+
+<div>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+</div>
+  
+<!--<canvas id="chart"></canvas> -->
+
+<canvas id="myChart" width="1600" height="900"></canvas>
+
+    
