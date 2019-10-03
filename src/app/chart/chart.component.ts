@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiService } from '../stock-api.service'
 import { get } from 'lodash';
-import { ChartDataInterface } from './state/chart-state';
+//import { ChartDataInterface } from './state/chart-state';
 
 @Component({
   selector: 'app-chart',
@@ -15,7 +15,7 @@ export class ChartComponent implements OnInit {
   dailyTSParsed: JSON
   intraDayTS: Array<Object>
   text: string
-
+  
 // Our labels along the x-axis
 years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
 
@@ -39,16 +39,25 @@ years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
   public barChartLabels = [];
   public barChartType = 'bar';
   public barChartLegend = true;
-  // public barChartData = [
-  //   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-  //   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  // ];
-  public barChartData = [
-    {data: []}
-  ];
-  series: 'Time Series (Daily)'
+  public testData = [];
 
- 
+  public barChartData = [
+    {
+      data: [65, 59, 80, 81, 56, 55, 40],
+      label: 'Series A'
+    },
+    {
+      data: [28, 48, 40, 19, 86, 27, 90], 
+      label: 'Series B'
+    }
+  ];
+  public barChartData2 = [
+    {data: [], label: 'Series C'}
+  ];
+  public chartData = [];
+  series: 'Time Series (Daily)'
+  prop = '4. close'
+
 
   onClick() {
     
@@ -63,21 +72,34 @@ years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
 
         //const arr = Object.keys(this.dailyTS).map((key) => [key, this.dailyTS[key]]);
         let arr = Object.entries(this.dailyTS)
-        console.log(arr[1]);
+        console.log(arr[0]);
         
         for (var i in arr) {
-          console.log("x asis", arr[i])
+          //console.log("x axis", arr[i])
           this.barChartLabels.push(arr[i][0])
-          
           if (arr[i].hasOwnProperty) {
+            
           //   //var val = this.dailyTS[i];
           //  // this.barChartData.push(arr[i][1])
-              console.log("testing", arr[i][1]);
-            
+           //   console.log("testing", arr[i][1]);
+           //console.log("arr[i][1][this.prop]")
+            //this.chartData.push(arr[i][this.prop])  
+            //this.barChartData2['data'].push(parseInt(arr[i][1]['4. close']))
+            this.barChartData[0].data.push(arr[i][1]['4. close'])
           }
         }
-        console.log("testing dailyts",arr[1][0])
-
+        console.log('type of an object', Object.prototype.toString.call(this.barChartData))
+        // this.barChartData[0].data.push(this.chartData[1])
+        console.log('testiruiu barcartdata',this.barChartData)
+        console.log(this.chartData[1])
+        console.log(this.chartData)
+        //console.log("testing dailyts",arr[2][1][prop])
+        //console.log("test data",this.testData)
+       // var array = JSON.parse(this.testData[0]);
+        //let test = array.split('"')
+        //console.log("array", array)
+       // var match = /close: \"\d+\"/.exec(arr[2][1]);
+        //console.log(match ? "Got " + match : "No match");  
         // for (var key in this.dailyTS) {
         //   console.log("x values", this.dailyTS[key])
         //   if (this.dailyTS.hasOwnProperty(key)) {
